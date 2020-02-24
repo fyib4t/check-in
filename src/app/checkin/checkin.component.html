@@ -1,0 +1,63 @@
+<!-- <h3>Check In</h3>
+<div class="row">
+    <div class="col-md-5">
+        <form>
+            <div id="user-data">
+                <div class="form-group">
+                    <label for="fullName">Full Name  </label>
+                    <input type="text" id="fullName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail  </label>
+                    <input type="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="sex" id="sexMale" value="Male" checked>
+                            ชาย
+                        </label>
+                        <label>
+                            <input type="radio" name="sex" id="sexFemale" value="Female">
+                            หญิง
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-default" type="button">Check In</button> -->
+                <html>
+                    <body>
+             <p-card header="Check-In"  [style]="{width: '300px'}" styleClass="ui-card-shadow" align:align = "center">
+                <p-header>
+                    <!-- <img src="https://www.javatpoint.com/images/nature-1.jpg" alt="image" style="align-items: center;">  -->
+                    <img src="\assets\logo\Logo.png" alt="logo" > 
+                </p-header>
+                <br>
+                <span class="ui-float-label">
+                    <input id="float-input" type="text" size="30" pInputText> 
+                    <label for="float-input">FullName</label>
+                </span>
+                <br>
+                <span class="ui-float-label">
+                    <input id="float-input" type="text" size="30" pInputText> 
+                    <label for="float-input">E-mail</label>
+                </span>
+                <br>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="sex" id="sexMale" value="Male" checked>
+                            ชาย
+                        </label>
+                        <label>
+                            <input type="radio" name="sex" id="sexFemale" value="Female">
+                            หญิง
+                        </label>
+                    </div>
+                </div>
+                <p-footer>
+                    <button pButton type="button" label="Check-in" icon="pi pi-check" style="margin-right: .25em" style="background-color: #C168D8; border-color: #C168D8;"></button>
+                </p-footer>
+            </p-card>
+            <div #mapContainer id="map"></div>
+    </body>
+        </html>

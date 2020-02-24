@@ -1,0 +1,46 @@
+<p-menubar [model]="items">
+    <!-- <input type="text" pInputText placeholder="Search"> -->
+    <!-- <a (click)="logout()">Logout</a> -->
+    <button pButton label="Logout" (click)="logout()"></button>
+</p-menubar>
+<br>
+
+<p-table [value]="histList" >
+    <ng-template pTemplate="header">
+        <tr>
+            <!-- <th>his_id</th> -->
+            <th>ctp_id</th>
+            <th>latitude</th>
+            <th>longtitude</th>
+            <th>status</th>
+            <th>creation_date</th>
+            <!-- <th>id</th> -->
+            <!-- <th>name</th> -->
+            <!-- <th>password</th> -->
+            <!-- <th>email</th> -->
+            <!-- <th>ctp_name</th> -->
+            <!-- <th>ctp_address</th> -->
+            <!-- <th>ctp_lat</th> -->
+            <!-- <th>ctp_lng</th> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-hist>
+        <tr>
+            <!-- <td>{{hist.id}}</td> -->
+            <td>{{hist.ctp_id}}</td>
+            <td>{{hist.latitude}}</td>
+            <td>{{hist.longtitude}}</td>
+            <td>{{hist.status}}</td>
+            <td>{{hist.creation_date}}</td>
+            <!-- <td>{{hist.id}}</td>
+            <td>{{hist.name}}</td>
+            <td>{{hist.password}}</td>
+            <td>{{hist.email}}</td>
+            <td>{{hist.ctp_name}}</td>
+            <td>{{hist.ctp_address}}</td>
+            <td>{{hist.ctp_lat}}</td>
+            <td>{{hist.ctp_lng}}</td> -->
+        </tr>
+    </ng-template>
+</p-table>
+
