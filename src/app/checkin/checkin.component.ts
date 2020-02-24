@@ -9,7 +9,7 @@ export class CheckinComponent implements AfterViewInit {
   latitude= 13.968165100000002;
   longitude= 100.5990321;
   // latitude: number;
-  // longitude: number;
+  // longitude: number;;
   map: google.maps.Map;
   coordinates = new google.maps.LatLng(this.latitude, this.longitude);
   constructor() { }
