@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   items=[];
   usersList=[];
-  constructor(private router: ActivatedRoute,private service: UserService,private _auth: AuthenticationService,
+  constructor(private router: ActivatedRoute,
+    private service: UserService,
+    private _auth: AuthenticationService,
     private _router: Router) { 
   // constructor(private carService: CarServiceService) { 
  }
@@ -44,33 +46,38 @@ export class HomeComponent implements OnInit {
           items:[
             {label:'Add New Center Point',
             routerLink: "/checkpoint"},
-            {label:'Edited'},
+            // {label:'Edited'},
           ]
         },
         {label: 'Check Point',
         items:[
           {label:'Add New Check Point',
           routerLink: "/centerpoint"},
-          {label:'Edited'},
+          // {label:'Edited'},
         ]
       }
       ]
       },
       {separator:true},
-      {
-        label: 'Users',
-        items:[
-          {label: 'Add Users',
-          routerLink: "/add-user"
-        },
-          {label: 'Edited',
-          routerLink: "/edited"}
-        ]
-      },
-      {separator:true},
+      // {
+      //   label: 'Users',
+      //   items:[
+      //     {label: 'Add Users',
+      //     routerLink: "/add-user"
+      //   },
+      //     {label: 'Edited',
+      //     routerLink: "/edited"}
+      //   ]
+      // },
+      // {separator:true},
       {
         label: 'History',
-        routerLink: "/history"
+        items:[
+          {label: 'Check-In by Users',
+           routerLink: "/history"},
+          {label: 'Check-In by Guest',
+           routerLink: "/hist_checkin"}
+        ]
       }
     ]
  

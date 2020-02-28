@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_service';
-import { ActivatedRoute, RouterLink, Router } from '@angular/router';
-import { UserService } from '../_service/user.service';
+import { Router } from '@angular/router';
 import { HistoryService } from '../_service/history.service';
 
 @Component({
@@ -12,8 +11,10 @@ import { HistoryService } from '../_service/history.service';
 export class HistoryComponent implements OnInit {
   items =[];
   histList: [];
-  constructor(private router: ActivatedRoute,private service: UserService,private _auth: AuthenticationService,
-    private _router: Router,private histService: HistoryService) { }
+  constructor(
+    private _auth: AuthenticationService,
+    private _router: Router,
+    private histService: HistoryService) { }
 
   ngOnInit(){
     this.loadAllHistory();
@@ -33,34 +34,40 @@ export class HistoryComponent implements OnInit {
           label: 'Center Point',
           items:[
             {label:'Add New Center Point',
-            routerLink: "/centerpoint"},
-            {label:'Edited'},
+            routerLink: "/checkpoint"},
+            // {label:'Edited'},
           ]
         },
         {label: 'Check Point',
         items:[
           {label:'Add New Check Point',
-          routerLink: "/checkpoint"},
-          {label:'Edited'},
+          routerLink: "/centerpoint"},
+          // {label:'Edited'},
         ]
       }
       ]
       },
       {separator:true},
-      {
-        label: 'Users',
-        items:[
-          {label: 'Add Users',
-          routerLink: "/add-user"
-        },
-          {label: 'Edited',
-          routerLink: "/edited"}
-        ]
-      },
-      {separator:true},
+      // {
+      //   label: 'Users',
+      //   items:[
+      //     {label: 'Add Users',
+      //     routerLink: "/add-user"
+      //   },
+      //     {label: 'Edited',
+      //     routerLink: "/edited"}
+      //   ]
+      // },
+      // {separator:true},
       {
         label: 'History',
-        routerLink: "/history"
+        // routerLink: "/history"
+        items:[
+          {label: 'Check-In by Users',
+           routerLink: "/history"},
+          {label: 'Check-In by Guest',
+           routerLink: "/hist_checkin"}
+        ]
       }
     ];
   }

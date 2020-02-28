@@ -1,68 +1,136 @@
-import { Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AlertService, UserService, AuthenticationService } from 'src/app/_service';
+import { CheckinService } from '../_service/checkin.service';
+import { MapService } from 'src/app/_service/map.service'
+import { HttpClient } from '@angular/common/http';
+
 @Component({
-  selector: 'app-checkin',
   templateUrl: './checkin.component.html',
-  styleUrls: ['./checkin.component.css']
 })
 export class CheckinComponent implements AfterViewInit {
-  @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
-  latitude= 13.968165100000002;
-  longitude= 100.5990321;
-  // latitude: number;
-  // longitude: number;;
+
+  @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+
+  checkinForm: FormGroup;
+  d = new Date();
+  latitude: number;
+  longitude: number;
   map: google.maps.Map;
-  coordinates = new google.maps.LatLng(this.latitude, this.longitude);
-  constructor() { }
+  coordinates: google.maps.LatLng;
+  geoCoder: google.maps.Geocoder;
+  marker: google.maps.Marker;
+  mapOptions: google.maps.MapOptions;
+  ctpList: any;
+  checkInData: any;
+  fullName: string;
+  email: string;
+  gender: string;
+  loading = false;
+  submitted = false;
+  url;
+  json;
 
-  mapOptions: google.maps.MapOptions = {
-    center: this.coordinates,
-    mapTypeId: 'terrain',
-    zoom: 15
-   };
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private alertService: AlertService,
+    private checkinServeice: CheckinService,
+    private mapservice: MapService,
+    private http: HttpClient
+  ) { }
 
-   marker = new google.maps.Marker({
-    position: this.coordinates,
-    map: this.map
-  });
-
-  circle = new google.maps.Circle({
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
-    radius: 100,
-    center: this.coordinates,
-    map: this.map
- })
-
- ngAfterViewInit(){
-    let position = this.setCurrentLocation();
-    this.mapInitializer();
-    console.log(position)
+  ngAfterViewInit() {
+    this.url = `http://localhost:9879/v1/users/checkin`;
+    this.setCurrentLocation();
+    this.getcenterpoint();
+    this.arePointsNear();
   }
 
-  mapInitializer() {
-    this.map = new google.maps.Map(this.gmap.nativeElement, 
-    this.mapOptions);
-    this.marker.setMap(this.map);
-  }
+  get f() { return this.checkinForm.controls; }
 
- setCurrentLocation(){
-    if('geolocation' in navigator){
-      navigator.geolocation.getCurrentPosition((position) =>{
+  // mapInitializer(latitude, longitude) {
+  //   // this.coordinates = new google.maps.LatLng(latitude, longitude);
+
+  //   // this.mapOptions = {
+  //   //   center: this.coordinates,
+  //   //   zoom: 15,
+  //   // };
+
+  //   // this.marker = new google.maps.Marker({
+  //   //   position: this.coordinates,
+  //   //   map: this.map,
+  //   //   draggable: true,
+  //   //   animation: google.maps.Animation.DROP
+  //   // });
+
+  //   // this.map = new google.maps.Map(this.gmap.nativeElement, 
+  //   // this.mapOptions);
+  //   // this.marker.setMap(this.map);
+  // }
+
+  setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        console.log(position.coords.latitude)
-        console.log(position.coords.longitude)
-        console.log(position)
-        return position
+        console.log('Lat: ' + this.latitude + 'Lat: ' + this.longitude);
       })
-    }else{
-      return console.log("5555555555555555")
+    }
+
+  }
+
+  getcenterpoint() {
+    this.mapservice.getcenterpoint().subscribe(date => {
+      this.ctpList = date; //get value
+      console.log(this.ctpList);
+    });
+  }
+
+  arePointsNear() {
+    //  var ky = 40000 / 360;
+    //   var kx = Math.cos(Math.PI * _centerPoint.latitude / 180.0) * ky;
+    //   var dx = (Math.abs(_centerPoint.longitude - _currentPosition.longitude)) * kx;
+    //   var dy = (Math.abs(_centerPoint.latitude - _currentPosition.latitude)) * ky;
+    //   return Math.sqrt(dx * dx + dy * dy);
+    var ky = 40000 / 360;
+    var kx = Math.cos(Math.PI * 13.9680671 / 180.0) * ky;
+    var dx = (Math.abs(100.598945 - 100.6019444)) * kx;
+    var dy = (Math.abs(13.9680671 - 14.0238088)) * ky;
+    var sol = Math.sqrt(dx * dx + dy * dy);
+    console.log('This is value: ' + Math.sqrt(dx * dx + dy * dy))
+
+    if (sol <= 0.5) {
+      return true;
+      console.log('true');
+    } else {
+      return false;
+      console.log('false');
     }
   }
 
-  
+  saveCheckIn() {
+    this.checkInData = {
+      "full_name": this.fullName,
+      "gender": this.gender,
+      "email": this.email,
+      "status": true,
+      "lat": this.latitude,
+      "lng": this.longitude,
+      "created_on": this.d
+    }
+    this.submitted = true;
+    this.loading = true;
+    console.log(this.d);
+    this.http.post(this.url,this.checkInData).toPromise().then((data:any) =>{
+      console.log(data);
+      this.router.navigate(['/check-in-home']);
+    })
+    console.log(this.checkInData);
+  }
 
 }

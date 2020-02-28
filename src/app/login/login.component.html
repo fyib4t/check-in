@@ -1,6 +1,23 @@
-<!-- <h2>Login</h2>
+
+<html>
+<body >
+  <style>
+    body {
+background-color: rgba(145, 86, 86, 0.3);}
+</style>
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+  <div class="ui-g-12 ui-md-6 ui-lg-4" style="padding-top: 20px;">
+<p-card [style]="{width: '360px'}">
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+  <div class="form-group">
+  <div style="text-align: center;">
+        <img src="\assets\logo\Logo.png" alt="logo"  [style]="{
+            width: '100px',
+            height: '100px'
+          }" >
+        </div>
+          <br>
         <label for="username">E-mail</label>
         <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
@@ -14,33 +31,17 @@
             <div *ngIf="f.password.errors.required">Password is required</div>
         </div>
     </div>
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">
+    <div class="form-group" style="text-align: center;">
+        <button [disabled]="loading" class="btn btn-primary" style="background-color:#C168D8; border-color: #C168D8;">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Login
         </button>
         <a routerLink= "/register" class="btn btn-link">Register</a>
-    </div> -->
-
-
-    <html>
-        <body style="background-color:lightgray;">
-            <p-card header="Login"  [style]="{width: '300px'} " styleClass="ui-card-shadow">
-      <br>
-        <span class="ui-float-label">
-          <input id="email" type="text" size="30" pInputText> 
-          <label for="email">E-mail</label>
-      </span>
-      <br>
-      <span class="ui-float-label">
-        <input id="password" type="password" size="30" pInputText> 
-        <label for="password">Password</label>
-      </span>
-        <p-footer>
-            <button pButton type="button" label="Login" icon="pi pi-check" style="margin-right: .25em; "></button>
-            <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>
-        </p-footer>
-      </p-card>
-      </body>
-      </html>
-      
+    </div>
+  </form>
+</p-card>
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+</div>
+</body>
+</html>

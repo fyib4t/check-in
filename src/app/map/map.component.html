@@ -1,5 +1,38 @@
 <p-menubar [model]="items">
     <!-- <input type="text" pInputText placeholder="Search"> -->
-    <!-- <a (click)="logout()">Logout</a> -->
+    <button pButton label="Logout" (click)="logout()"></button>
 </p-menubar>
+
 <div #mapContainer id="map"></div>
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 25px">
+  <p-table [value]="ctpList" [paginator]="true" [rows]="10" >
+      <ng-template pTemplate ="caption">CenterPoint
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th style="width:150px">Latitude</th>
+              <th style="width:150px">Longitude</th>
+              <th style="width:100px">Radius</th>
+              <th style="width:150px"></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-ctp>
+          <tr>
+              <td>{{ctp.ctp_name}}</td>
+              <td>{{ctp.ctp_address}}</td>
+              <td>{{ctp.ctp_lat}}</td>
+              <td>{{ctp.ctp_lng}}</td>
+              <td>{{ctp.radius}}</td>
+              <td>
+                <button pButton type="button" class="ui-button-success" icon="pi pi-pencil" style="margin-right: .5em" ></button>
+                <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
+                </td>
+        
+       
+          </tr>
+      </ng-template>
+  </p-table>
+  </div> 

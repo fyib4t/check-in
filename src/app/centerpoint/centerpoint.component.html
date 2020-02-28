@@ -1,6 +1,12 @@
-<p>Add Check Point</p>
-<form [formGroup]="centerPointForm" (ngSubmit)="onSubmit()">
+
+<p-menubar [model]="items">
+    <!-- <input type="text" pInputText placeholder="Search"> -->
+    <button pButton label="Logout" (click)="logout()"></button>
+</p-menubar>
+   
+<form [formGroup]="centerPointForm" (ngSubmit)="onSubmit()" style="margin: 150px;">
     <div class="form-group">
+        <p>Add Check Point</p>
         <label for="name">User Id</label>
         <input type="text" formControlName="user_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">

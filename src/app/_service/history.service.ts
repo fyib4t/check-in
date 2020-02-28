@@ -11,4 +11,8 @@ export class HistoryService {
   getAll(){
     return this.http.get<any>(`http://localhost:9879/v1/users/get-all-history`);
   }
+
+  getAllHistroyGuest(){
+    return this.http.get<any>(`http://localhost:9879/v1/users/get-all-guest-hist`);
+  }
 }

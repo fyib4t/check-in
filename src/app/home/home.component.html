@@ -12,15 +12,22 @@
         <td>Password</td>
     </tr>
 </table>  -->
-
-<p-table [value]="usersList">
-    <ng-template pTemplate ="caption">List of Users</ng-template>
-    <ng-template pTemplate="header">
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 25px">
+    <button pButton type="button" label="Add User" style="width: 150px;" icon="pi pi-user-plus" [routerLink]="['/add-user']" routerLinkActive="router-link-active" ></button>
+    <br>
+<p-table [value]="usersList" [paginator]="true" [rows]="10">
+    <ng-template pTemplate ="caption">List of Users
+        <!-- <span class="ui-table-globalfilter-container">
+            <button pButton type="button" icon="pi pi-cog"></button>
+        </span> -->
+    </ng-template>
+    <ng-template pTemplate="header" >
         <tr>
             <th>ID</th>
             <th>NAME</th>
             <th>EMAIL</th>
             <th>PASSWORD</th>
+            <th></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
@@ -30,12 +37,21 @@
             <td> {{user.email}}</td>
             <td>{{user.password}}</td>
             <td>
-                <button pButton type="button" class="ui-button-success" icon="pi pi-user-edit" style="margin-right: .5em"></button>
+                <button pButton type="button" class="ui-button-success" icon="pi pi-user-edit" style="margin-right: .5em" [routerLink]="['/edited']" routerLinkActive="router-link-active" ></button>
+                <button pButton type="button"  icon="pi pi-map-marker" style="margin-right: .5em" [routerLink]="['/centerpoint']" routerLinkActive="router-link-active"></button>
                 <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
-            </td>
+                </td>
         </tr>
     </ng-template>
+    <!-- <ng-template pTemplate="body" let-user>
+        <tr [pSelectableRow]="user">
+            <td *ngFor="let user">
+                {{user}}
+            </td>
+        </tr>
+    </ng-template> -->
 </p-table>
+</div>
 
 <!-- <p-table class="table">
     <ng-template pTemplate="header">

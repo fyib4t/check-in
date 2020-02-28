@@ -6,3 +6,7 @@
    .menubar {
     background-color: lightblue;
   }
+
+  agm-map {
+    height: 300;
+}

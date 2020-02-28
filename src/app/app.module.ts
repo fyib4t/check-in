@@ -40,13 +40,15 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 // } from '@angular/material';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
+import { HistCheckinComponent } from './hist-checkin/hist-checkin.component';
+import { CheckinHomeComponent } from './checkin-home/checkin-home.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'map',      component: MapComponent },
   { path: 'login', component:LoginComponent},
-  { path: 'centerpoint', component:CenterpointComponent},
-  { path: 'checkpoint', component:CheckpointComponent},
+  { path: 'centerpoint', component: CenterpointComponent},
+  { path: 'checkpoint', component: CheckpointComponent},
   { path: 'history', component:HistoryComponent},
   { path: 'edited', component:EditedComponent},
   { path: 'add-user', component:AddUserComponent},
@@ -55,6 +57,8 @@ const appRoutes: Routes = [
   { path: 'check-in', component:CheckinComponent},
   { path: 'map2', component:MaptestComponent},
   { path: 'testui', component:TestuiComponent},
+  { path: 'hist_checkin', component:HistCheckinComponent},
+  { path: 'check-in-home', component:CheckinHomeComponent},
   { path: '**', component: LoginComponent },
 
 ];
@@ -77,6 +81,8 @@ const appRoutes: Routes = [
     CheckinComponent,
     MaptestComponent,
     TestuiComponent,
+    HistCheckinComponent,
+    CheckinHomeComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -85,7 +91,10 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBvoWqNfccKEDGSaC28MkJkgL2NXGDw774'}),
+      apiKey: 'AIzaSyBvoWqNfccKEDGSaC28MkJkgL2NXGDw774',//}),
+      // apiKey: 'AIzaSyAQRzeM1wwLyD0HBU16lkbCPv5-cpaSm-I',
+      libraries: ['places']
+    }),
     FormsModule,
     BrowserAnimationsModule,
     MenubarModule,
@@ -102,7 +111,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     CardModule,
     ButtonModule,
-    RadioButtonModule
+    RadioButtonModule,
   
   ],
   exports: [RouterModule],

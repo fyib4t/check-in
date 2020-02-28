@@ -1,33 +1,36 @@
 <p-menubar [model]="items">
     <button pButton label="Logout" (click)="logout()"></button>
 </p-menubar>
-<br>
+
+<div #mapContainer id="map"></div>
+
 <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 25px">
-  
 <p-table [value]="histList" [paginator]="true" [rows]="10" >
-    <ng-template pTemplate ="caption">Check-In History By Users
+    <ng-template pTemplate ="caption">Check-In History By Guest
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
-            <th>Center Point</th>
-            <th>Status</th>
+            <th style="width:100px">Gender</th>
+            <th>Email</th>
+            <th style="width:100px">Status</th>
             <th>Latitude</th>
             <th>Longitude</th>
             <th>Creation Date</th>
-            
+         
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-hist>
         <tr>
-            <td>{{hist.name}}</td>
-            <td>{{hist.ctp_name}}</td>
+            <td>{{hist.full_name}}</td>
+            <td>{{hist.gender}}</td>
+            <td>{{hist.email}}</td>
             <td>{{hist.status}}</td>
-            <td>{{hist.latitude}}</td>
-            <td>{{hist.longtitude}}</td>
-            <td>{{hist.creation_date}}</td>
-
+            <td>{{hist.lat}}</td>
+            <td>{{hist.lng}}</td>
+            <td>{{hist.created_on}}</td>
         </tr>
     </ng-template>
 </p-table>
-</div>
+</div> 
+
