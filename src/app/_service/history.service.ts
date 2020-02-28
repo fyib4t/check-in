@@ -9,10 +9,10 @@ export class HistoryService {
   constructor(private http: HttpClient) { }
 
   getAll(){
-    return this.http.get<any>(`http://localhost:9879/v1/users/get-all-history`);
+    return this.http.get<any>(`http://192.168.0.105:9879/v1/users/get-all-history`);
   }
 
   getAllHistroyGuest(){
-    return this.http.get<any>(`http://localhost:9879/v1/users/get-all-guest-hist`);
+    return this.http.get<any>(`http://192.168.0.105:9879/v1/users/get-all-guest-hist`);
   }
 }

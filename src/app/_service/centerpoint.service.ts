@@ -9,6 +9,6 @@ export class CenterpointService {
   constructor(private http: HttpClient) { }
 
   addcenterpoint(ctp: CenterPoint){
-    return this.http.post(`http://localhost:9879/v1/users/addCheckPoint`, ctp);
+    return this.http.post(`http://192.168.0.105:9879/v1/users/addCheckPoint`, ctp);
   }
 }

@@ -13,6 +13,6 @@ export class MapService {
   }
 
   getcenterpoint(){
-    return this.http.get<any>(`http://localhost:9879/v1/users/getcenterpoint`);
+    return this.http.get<any>(`http://192.168.0.105:9879/v1/users/getcenterpoint`);
   }
 }

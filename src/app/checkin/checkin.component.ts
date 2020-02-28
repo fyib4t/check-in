@@ -45,7 +45,7 @@ export class CheckinComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    this.url = `http://localhost:9879/v1/users/checkin`;
+    this.url = `http://192.168.0.105:9879/v1/users/checkin`;
     this.setCurrentLocation();
     this.getcenterpoint();
     this.arePointsNear();
@@ -78,7 +78,7 @@ export class CheckinComponent implements AfterViewInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        console.log('Lat: ' + this.latitude + 'Lat: ' + this.longitude);
+        // console.log('Lat: ' + this.latitude + 'Lat: ' + this.longitude);
       })
     }
 
@@ -87,29 +87,24 @@ export class CheckinComponent implements AfterViewInit {
   getcenterpoint() {
     this.mapservice.getcenterpoint().subscribe(date => {
       this.ctpList = date; //get value
-      console.log(this.ctpList);
+      // console.log(this.ctpList);
     });
   }
 
   arePointsNear() {
-    //  var ky = 40000 / 360;
-    //   var kx = Math.cos(Math.PI * _centerPoint.latitude / 180.0) * ky;
-    //   var dx = (Math.abs(_centerPoint.longitude - _currentPosition.longitude)) * kx;
-    //   var dy = (Math.abs(_centerPoint.latitude - _currentPosition.latitude)) * ky;
-    //   return Math.sqrt(dx * dx + dy * dy);
     var ky = 40000 / 360;
     var kx = Math.cos(Math.PI * 13.9680671 / 180.0) * ky;
     var dx = (Math.abs(100.598945 - 100.6019444)) * kx;
     var dy = (Math.abs(13.9680671 - 14.0238088)) * ky;
     var sol = Math.sqrt(dx * dx + dy * dy);
-    console.log('This is value: ' + Math.sqrt(dx * dx + dy * dy))
+    // console.log('This is value: ' + Math.sqrt(dx * dx + dy * dy))
 
     if (sol <= 0.5) {
       return true;
-      console.log('true');
+      // console.log('true');
     } else {
       return false;
-      console.log('false');
+      // console.log('false');
     }
   }
 
@@ -127,10 +122,10 @@ export class CheckinComponent implements AfterViewInit {
     this.loading = true;
     console.log(this.d);
     this.http.post(this.url,this.checkInData).toPromise().then((data:any) =>{
-      console.log(data);
+      // console.log(data);
       this.router.navigate(['/check-in-home']);
     })
-    console.log(this.checkInData);
+    // console.log(this.checkInData);
   }
 
 }

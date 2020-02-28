@@ -9,6 +9,6 @@ export class CheckinService {
   constructor(private http: HttpClient) { }
 
   savecheckin(checkin: CheckIn){
-    return this.http.post(`http://localhost:9879/v1/users/checkin`, checkin);
+    return this.http.post(`http://192.168.0.105:9879/v1/users/checkin`, checkin);
   }
 }

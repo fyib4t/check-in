@@ -63,7 +63,7 @@ export class CheckpointComponent implements AfterViewInit {
       //   "ctp_lng": "100.7227",
       //   "radius": 500
       // }
-      this.url = `http://localhost:9879/v1/users/add-centerpoint`;
+      this.url = `http://192.168.0.105:9879/v1/users/add-centerpoint`;
       this.json;
 
       console.log(this.centerpoint);
